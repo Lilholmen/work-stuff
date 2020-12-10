@@ -1,0 +1,16 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+}
+
+.container__done-msg {
+  font-size: 18vh;
+}
