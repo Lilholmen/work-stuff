@@ -20,13 +20,13 @@ const thisMonthSalary = {
   },
 };
 
-let thisMonthLength = getMonthLength(11);
+let thisMonthLength = getMonthLength(1);
 let mySalary = calcTotalSalary(thisMonthLength, 9);
 
 printIssueWays(thisMonthSalary.calcIssueWays(mySalary));
 
 function getMonthLength(smth) {
-  let thisMonth = new Date(2020, ++smth, 0);
+  let thisMonth = new Date(2021, ++smth, 0);
   return thisMonth.getDate();
 }
 
