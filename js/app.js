@@ -19,12 +19,14 @@ const textResult = document.querySelectorAll('.result__data');
 
 const thisMonthSalary = {
   issueWays: {
+    total: 0,
     prepayment: 0,
     salary: 0,
     cash: 0,
   },
 
   set totalSalary(monthSalary) {
+    this.issueWays.total = monthSalary;
     this.issueWays.prepayment =
       monthSalary >= PREPAYMENT ? PREPAYMENT : monthSalary;
     this.issueWays.salary =
@@ -41,7 +43,7 @@ yearSelector.forEach((item) =>
   item.addEventListener('click', () => {
     if (!item.classList.contains('btn-selected')) {
       yearSelector.forEach((item) => item.classList.remove('btn-selected'));
-      selectedDate[1] = item.value;
+      selectedDate[1] = +item.value;
       item.classList.add('btn-selected');
     }
   })
@@ -51,7 +53,7 @@ monthSelector.forEach((item) =>
   item.addEventListener('click', () => {
     if (!item.classList.contains('btn-selected')) {
       monthSelector.forEach((item) => item.classList.remove('btn-selected'));
-      selectedDate[0] = ++item.value;
+      selectedDate[0] = +item.value;
       item.classList.add('btn-selected');
     }
   })
@@ -73,8 +75,6 @@ shiftsCounterBtns.forEach((btn) => {
 
 allBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
-    calcTotalSalary();
-
     thisMonthSalary.totalSalary = calcTotalSalary();
     displayResult();
   });
@@ -91,7 +91,7 @@ function calcTotalSalary() {
 function displayResult() {
   const totalSalaryGetted = thisMonthSalary.totalSalary;
 
-  textResult[0].textContent = calcTotalSalary().toFixed(2);
+  textResult[0].textContent = totalSalaryGetted.total.toFixed(2);
   textResult[1].textContent = totalSalaryGetted.prepayment.toFixed(2);
   textResult[2].textContent = totalSalaryGetted.salary.toFixed(2);
   textResult[3].textContent = totalSalaryGetted.cash.toFixed(2);
